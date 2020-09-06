@@ -1,0 +1,10 @@
+Bundle-Name: office-scheduling-api
+Bundle-SymbolicName: blood0cean.com.github.office.schedule.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	blood0cean.com.github.office.schedule.exception,\
+	blood0cean.com.github.office.schedule.model,\
+	blood0cean.com.github.office.schedule.service,\
+	blood0cean.com.github.office.schedule.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../office-scheduling-service/service.xml

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="blood0cean.com.github.office.schedule.model.Office">
+		<field name="uuid" type="String" />
+		<field name="officeId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="boolean" />
+		<field name="maxPeopleAllowed" type="int" />
+		<field name="availableFrom" type="Date" />
+		<field name="availableUntil" type="Date" />
+	</model>
+	<model name="blood0cean.com.github.office.schedule.model.OfficeSchedule">
+		<field name="uuid" type="String" />
+		<field name="officeScheduleId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="officeId" type="long" />
+		<field name="spots" type="int" />
+		<field name="date" type="Date" />
+	</model>
+</model-hints>

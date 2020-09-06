@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="blood0cean.com.github.office.schedule">
+	<author>Blood 0cean</author>
+	<namespace>OFFICE</namespace>
+	<entity local-service="true" name="Office" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="officeId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Entity fields -->
+
+		<column name="name" type="String" localized="true"/>
+		<column name="description" type="String" localized="true"/>
+		<column name="active" type="boolean" />
+		<column name="maxPeopleAllowed" type="int" />
+		<column name="availableFrom" type="Date" />
+		<column name="availableUntil" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Name" return-type="Office">
+			<finder-column name="name" />
+		</finder>
+		<finder name="Active" return-type="Collection">
+			<finder-column name="active" />
+		</finder>
+		<finder name="Availability" return-type="Collection">
+			<finder-column name="availableFrom"/>
+			<finder-column name="availableUntil"/>
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+	<entity local-service="true" name="OfficeSchedule" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="officeScheduleId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		
+		<!-- Entity fields -->
+		<column name="officeId" type="long"></column>
+		<column name="spots" type="int"></column>
+		<column name="date" type="Date"></column>
+		
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Office" return-type="Office">
+			<finder-column name="officeId" />
+		</finder>
+		
+		<!-- References -->
+
+		<reference entity="Office" package-path="blood0cean.com.github.office.schedule" />
+	
+	</entity>
+	<exceptions>
+		<exception>OfficeFull</exception>
+		<exception>OfficeUnavailable</exception>
+	</exceptions>
+</service-builder>
