@@ -43,8 +43,6 @@ public class OfficeSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setActive(model.isActive());
 		soapModel.setMaxPeopleAllowed(model.getMaxPeopleAllowed());
-		soapModel.setAvailableFrom(model.getAvailableFrom());
-		soapModel.setAvailableUntil(model.getAvailableUntil());
 
 		return soapModel;
 	}
@@ -197,22 +195,6 @@ public class OfficeSoap implements Serializable {
 		_maxPeopleAllowed = maxPeopleAllowed;
 	}
 
-	public Date getAvailableFrom() {
-		return _availableFrom;
-	}
-
-	public void setAvailableFrom(Date availableFrom) {
-		_availableFrom = availableFrom;
-	}
-
-	public Date getAvailableUntil() {
-		return _availableUntil;
-	}
-
-	public void setAvailableUntil(Date availableUntil) {
-		_availableUntil = availableUntil;
-	}
-
 	private String _uuid;
 	private long _officeId;
 	private long _groupId;
@@ -225,7 +207,5 @@ public class OfficeSoap implements Serializable {
 	private String _description;
 	private boolean _active;
 	private int _maxPeopleAllowed;
-	private Date _availableFrom;
-	private Date _availableUntil;
 
 }

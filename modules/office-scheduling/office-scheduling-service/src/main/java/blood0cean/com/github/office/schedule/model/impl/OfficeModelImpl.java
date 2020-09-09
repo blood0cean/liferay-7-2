@@ -87,8 +87,7 @@ public class OfficeModelImpl
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
-		{"active_", Types.BOOLEAN}, {"maxPeopleAllowed", Types.INTEGER},
-		{"availableFrom", Types.TIMESTAMP}, {"availableUntil", Types.TIMESTAMP}
+		{"active_", Types.BOOLEAN}, {"maxPeopleAllowed", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -107,12 +106,10 @@ public class OfficeModelImpl
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("maxPeopleAllowed", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("availableFrom", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("availableUntil", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table OFFICE_Office (uuid_ VARCHAR(75) null,officeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,description STRING null,active_ BOOLEAN,maxPeopleAllowed INTEGER,availableFrom DATE null,availableUntil DATE null)";
+		"create table OFFICE_Office (uuid_ VARCHAR(75) null,officeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,description STRING null,active_ BOOLEAN,maxPeopleAllowed INTEGER)";
 
 	public static final String TABLE_SQL_DROP = "drop table OFFICE_Office";
 
@@ -129,17 +126,13 @@ public class OfficeModelImpl
 
 	public static final long ACTIVE_COLUMN_BITMASK = 1L;
 
-	public static final long AVAILABLEFROM_COLUMN_BITMASK = 2L;
+	public static final long COMPANYID_COLUMN_BITMASK = 2L;
 
-	public static final long AVAILABLEUNTIL_COLUMN_BITMASK = 4L;
+	public static final long GROUPID_COLUMN_BITMASK = 4L;
 
-	public static final long COMPANYID_COLUMN_BITMASK = 8L;
+	public static final long NAME_COLUMN_BITMASK = 8L;
 
-	public static final long GROUPID_COLUMN_BITMASK = 16L;
-
-	public static final long NAME_COLUMN_BITMASK = 32L;
-
-	public static final long UUID_COLUMN_BITMASK = 64L;
+	public static final long UUID_COLUMN_BITMASK = 16L;
 
 	public static void setEntityCacheEnabled(boolean entityCacheEnabled) {
 		_entityCacheEnabled = entityCacheEnabled;
@@ -174,8 +167,6 @@ public class OfficeModelImpl
 		model.setDescription(soapModel.getDescription());
 		model.setActive(soapModel.isActive());
 		model.setMaxPeopleAllowed(soapModel.getMaxPeopleAllowed());
-		model.setAvailableFrom(soapModel.getAvailableFrom());
-		model.setAvailableUntil(soapModel.getAvailableUntil());
 
 		return model;
 	}
@@ -360,15 +351,6 @@ public class OfficeModelImpl
 		attributeSetterBiConsumers.put(
 			"maxPeopleAllowed",
 			(BiConsumer<Office, Integer>)Office::setMaxPeopleAllowed);
-		attributeGetterFunctions.put("availableFrom", Office::getAvailableFrom);
-		attributeSetterBiConsumers.put(
-			"availableFrom",
-			(BiConsumer<Office, Date>)Office::setAvailableFrom);
-		attributeGetterFunctions.put(
-			"availableUntil", Office::getAvailableUntil);
-		attributeSetterBiConsumers.put(
-			"availableUntil",
-			(BiConsumer<Office, Date>)Office::setAvailableUntil);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -791,48 +773,6 @@ public class OfficeModelImpl
 		_maxPeopleAllowed = maxPeopleAllowed;
 	}
 
-	@JSON
-	@Override
-	public Date getAvailableFrom() {
-		return _availableFrom;
-	}
-
-	@Override
-	public void setAvailableFrom(Date availableFrom) {
-		_columnBitmask |= AVAILABLEFROM_COLUMN_BITMASK;
-
-		if (_originalAvailableFrom == null) {
-			_originalAvailableFrom = _availableFrom;
-		}
-
-		_availableFrom = availableFrom;
-	}
-
-	public Date getOriginalAvailableFrom() {
-		return _originalAvailableFrom;
-	}
-
-	@JSON
-	@Override
-	public Date getAvailableUntil() {
-		return _availableUntil;
-	}
-
-	@Override
-	public void setAvailableUntil(Date availableUntil) {
-		_columnBitmask |= AVAILABLEUNTIL_COLUMN_BITMASK;
-
-		if (_originalAvailableUntil == null) {
-			_originalAvailableUntil = _availableUntil;
-		}
-
-		_availableUntil = availableUntil;
-	}
-
-	public Date getOriginalAvailableUntil() {
-		return _originalAvailableUntil;
-	}
-
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(
@@ -975,8 +915,6 @@ public class OfficeModelImpl
 		officeImpl.setDescription(getDescription());
 		officeImpl.setActive(isActive());
 		officeImpl.setMaxPeopleAllowed(getMaxPeopleAllowed());
-		officeImpl.setAvailableFrom(getAvailableFrom());
-		officeImpl.setAvailableUntil(getAvailableUntil());
 
 		officeImpl.resetOriginalValues();
 
@@ -1055,11 +993,6 @@ public class OfficeModelImpl
 
 		officeModelImpl._setOriginalActive = false;
 
-		officeModelImpl._originalAvailableFrom = officeModelImpl._availableFrom;
-
-		officeModelImpl._originalAvailableUntil =
-			officeModelImpl._availableUntil;
-
 		officeModelImpl._columnBitmask = 0;
 	}
 
@@ -1128,24 +1061,6 @@ public class OfficeModelImpl
 		officeCacheModel.active = isActive();
 
 		officeCacheModel.maxPeopleAllowed = getMaxPeopleAllowed();
-
-		Date availableFrom = getAvailableFrom();
-
-		if (availableFrom != null) {
-			officeCacheModel.availableFrom = availableFrom.getTime();
-		}
-		else {
-			officeCacheModel.availableFrom = Long.MIN_VALUE;
-		}
-
-		Date availableUntil = getAvailableUntil();
-
-		if (availableUntil != null) {
-			officeCacheModel.availableUntil = availableUntil.getTime();
-		}
-		else {
-			officeCacheModel.availableUntil = Long.MIN_VALUE;
-		}
 
 		return officeCacheModel;
 	}
@@ -1244,10 +1159,6 @@ public class OfficeModelImpl
 	private boolean _originalActive;
 	private boolean _setOriginalActive;
 	private int _maxPeopleAllowed;
-	private Date _availableFrom;
-	private Date _originalAvailableFrom;
-	private Date _availableUntil;
-	private Date _originalAvailableUntil;
 	private long _columnBitmask;
 	private Office _escapedModel;
 

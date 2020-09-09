@@ -14,6 +14,7 @@
 
 package blood0cean.com.github.office.schedule.service.base;
 
+import blood0cean.com.github.office.schedule.exception.NoSuchOfficeException;
 import blood0cean.com.github.office.schedule.model.Office;
 import blood0cean.com.github.office.schedule.service.OfficeLocalService;
 import blood0cean.com.github.office.schedule.service.persistence.OfficePersistence;
@@ -109,11 +110,14 @@ public abstract class OfficeLocalServiceBaseImpl
 	 *
 	 * @param officeId the primary key of the office
 	 * @return the office that was removed
+	 * @throws NoSuchOfficeException
 	 * @throws PortalException if a office with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Office deleteOffice(long officeId) throws PortalException {
+	public Office deleteOffice(long officeId)
+		throws NoSuchOfficeException, PortalException {
+
 		return officePersistence.remove(officeId);
 	}
 

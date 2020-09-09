@@ -1,5 +1,5 @@
 create index IX_BE9462E4 on OFFICE_Office (active_);
-create index IX_E5E55BE7 on OFFICE_Office (availableFrom, availableUntil);
+create index IX_59FA6885 on OFFICE_Office (groupId);
 create index IX_9BD661C4 on OFFICE_Office (name[$COLUMN_LENGTH:75$]);
 create index IX_1CBAB479 on OFFICE_Office (uuid_[$COLUMN_LENGTH:75$], companyId);
 create unique index IX_C028053B on OFFICE_Office (uuid_[$COLUMN_LENGTH:75$], groupId);

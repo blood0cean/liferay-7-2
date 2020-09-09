@@ -28,8 +28,6 @@
 		<column name="description" type="String" localized="true"/>
 		<column name="active" type="boolean" />
 		<column name="maxPeopleAllowed" type="int" />
-		<column name="availableFrom" type="Date" />
-		<column name="availableUntil" type="Date" />
 
 		<!-- Order -->
 
@@ -39,15 +37,15 @@
 
 		<!-- Finder methods -->
 
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
 		<finder name="Name" return-type="Office">
 			<finder-column name="name" />
 		</finder>
 		<finder name="Active" return-type="Collection">
 			<finder-column name="active" />
-		</finder>
-		<finder name="Availability" return-type="Collection">
-			<finder-column name="availableFrom"/>
-			<finder-column name="availableUntil"/>
 		</finder>
 
 		<!-- References -->
@@ -96,6 +94,7 @@
 	
 	</entity>
 	<exceptions>
+		<exception>OfficeNameRequired</exception>
 		<exception>OfficeFull</exception>
 		<exception>OfficeUnavailable</exception>
 	</exceptions>

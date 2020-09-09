@@ -14,8 +14,6 @@
 		<field localized="true" name="description" type="String" />
 		<field name="active" type="boolean" />
 		<field name="maxPeopleAllowed" type="int" />
-		<field name="availableFrom" type="Date" />
-		<field name="availableUntil" type="Date" />
 	</model>
 	<model name="blood0cean.com.github.office.schedule.model.OfficeSchedule">
 		<field name="uuid" type="String" />

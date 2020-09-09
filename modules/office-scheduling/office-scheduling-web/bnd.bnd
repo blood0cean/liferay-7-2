@@ -1,0 +1,4 @@
+Bundle-Name: office-scheduling-web
+Bundle-SymbolicName: blood0cean.com.github.office.schedule.web
+Bundle-Version: 1.0.0
+Export-Package: blood0cean.com.github.constants

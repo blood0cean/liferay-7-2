@@ -30,6 +30,18 @@ public class OfficeLocalServiceWrapper
 		_officeLocalService = officeLocalService;
 	}
 
+	@Override
+	public blood0cean.com.github.office.schedule.model.Office addOffice(
+			long userId, String name, String description, boolean active,
+			int maxPeopleAllowed,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _officeLocalService.addOffice(
+			userId, name, description, active, maxPeopleAllowed,
+			serviceContext);
+	}
+
 	/**
 	 * Adds the office to the database. Also notifies the appropriate model listeners.
 	 *
@@ -61,12 +73,15 @@ public class OfficeLocalServiceWrapper
 	 *
 	 * @param officeId the primary key of the office
 	 * @return the office that was removed
+	 * @throws NoSuchOfficeException
 	 * @throws PortalException if a office with the primary key could not be found
 	 */
 	@Override
 	public blood0cean.com.github.office.schedule.model.Office deleteOffice(
 			long officeId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws blood0cean.com.github.office.schedule.exception.
+			NoSuchOfficeException,
+			   com.liferay.portal.kernel.exception.PortalException {
 
 		return _officeLocalService.deleteOffice(officeId);
 	}
@@ -278,6 +293,30 @@ public class OfficeLocalServiceWrapper
 		return _officeLocalService.getOffices(start, end);
 	}
 
+	@Override
+	public java.util.List<blood0cean.com.github.office.schedule.model.Office>
+		getOffices(long groupId) {
+
+		return _officeLocalService.getOffices(groupId);
+	}
+
+	@Override
+	public java.util.List<blood0cean.com.github.office.schedule.model.Office>
+		getOffices(long groupId, int start, int end) {
+
+		return _officeLocalService.getOffices(groupId, start, end);
+	}
+
+	@Override
+	public java.util.List<blood0cean.com.github.office.schedule.model.Office>
+		getOffices(
+			long groupId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<blood0cean.com.github.office.schedule.model.Office> obc) {
+
+		return _officeLocalService.getOffices(groupId, start, end, obc);
+	}
+
 	/**
 	 * Returns all the offices matching the UUID and company.
 	 *
@@ -325,6 +364,11 @@ public class OfficeLocalServiceWrapper
 		return _officeLocalService.getOfficesCount();
 	}
 
+	@Override
+	public long getOfficesCount(long groupId) {
+		return _officeLocalService.getOfficesCount(groupId);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -344,6 +388,18 @@ public class OfficeLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _officeLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public blood0cean.com.github.office.schedule.model.Office updateOffice(
+			long userId, long officeId, String name, String description,
+			boolean active, int maxPeopleAllowed,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _officeLocalService.updateOffice(
+			userId, officeId, name, description, active, maxPeopleAllowed,
+			serviceContext);
 	}
 
 	/**

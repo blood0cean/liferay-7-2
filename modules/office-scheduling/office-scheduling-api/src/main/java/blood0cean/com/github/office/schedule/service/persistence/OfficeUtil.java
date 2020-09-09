@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -537,6 +536,172 @@ public class OfficeUtil {
 	}
 
 	/**
+	 * Returns all the offices where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @return the matching offices
+	 */
+	public static List<Office> findByGroupId(long groupId) {
+		return getPersistence().findByGroupId(groupId);
+	}
+
+	/**
+	 * Returns a range of all the offices where groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>OfficeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of offices
+	 * @param end the upper bound of the range of offices (not inclusive)
+	 * @return the range of matching offices
+	 */
+	public static List<Office> findByGroupId(long groupId, int start, int end) {
+		return getPersistence().findByGroupId(groupId, start, end);
+	}
+
+	/**
+	 * Returns an ordered range of all the offices where groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>OfficeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of offices
+	 * @param end the upper bound of the range of offices (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching offices
+	 */
+	public static List<Office> findByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<Office> orderByComparator) {
+
+		return getPersistence().findByGroupId(
+			groupId, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the offices where groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>OfficeModelImpl</code>.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of offices
+	 * @param end the upper bound of the range of offices (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching offices
+	 */
+	public static List<Office> findByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<Office> orderByComparator, boolean useFinderCache) {
+
+		return getPersistence().findByGroupId(
+			groupId, start, end, orderByComparator, useFinderCache);
+	}
+
+	/**
+	 * Returns the first office in the ordered set where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching office
+	 * @throws NoSuchOfficeException if a matching office could not be found
+	 */
+	public static Office findByGroupId_First(
+			long groupId, OrderByComparator<Office> orderByComparator)
+		throws blood0cean.com.github.office.schedule.exception.
+			NoSuchOfficeException {
+
+		return getPersistence().findByGroupId_First(groupId, orderByComparator);
+	}
+
+	/**
+	 * Returns the first office in the ordered set where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching office, or <code>null</code> if a matching office could not be found
+	 */
+	public static Office fetchByGroupId_First(
+		long groupId, OrderByComparator<Office> orderByComparator) {
+
+		return getPersistence().fetchByGroupId_First(
+			groupId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last office in the ordered set where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching office
+	 * @throws NoSuchOfficeException if a matching office could not be found
+	 */
+	public static Office findByGroupId_Last(
+			long groupId, OrderByComparator<Office> orderByComparator)
+		throws blood0cean.com.github.office.schedule.exception.
+			NoSuchOfficeException {
+
+		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last office in the ordered set where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching office, or <code>null</code> if a matching office could not be found
+	 */
+	public static Office fetchByGroupId_Last(
+		long groupId, OrderByComparator<Office> orderByComparator) {
+
+		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
+	}
+
+	/**
+	 * Returns the offices before and after the current office in the ordered set where groupId = &#63;.
+	 *
+	 * @param officeId the primary key of the current office
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next office
+	 * @throws NoSuchOfficeException if a office with the primary key could not be found
+	 */
+	public static Office[] findByGroupId_PrevAndNext(
+			long officeId, long groupId,
+			OrderByComparator<Office> orderByComparator)
+		throws blood0cean.com.github.office.schedule.exception.
+			NoSuchOfficeException {
+
+		return getPersistence().findByGroupId_PrevAndNext(
+			officeId, groupId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the offices where groupId = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 */
+	public static void removeByGroupId(long groupId) {
+		getPersistence().removeByGroupId(groupId);
+	}
+
+	/**
+	 * Returns the number of offices where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @return the number of matching offices
+	 */
+	public static int countByGroupId(long groupId) {
+		return getPersistence().countByGroupId(groupId);
+	}
+
+	/**
 	 * Returns the office where name = &#63; or throws a <code>NoSuchOfficeException</code> if it could not be found.
 	 *
 	 * @param name the name
@@ -759,202 +924,6 @@ public class OfficeUtil {
 	 */
 	public static int countByActive(boolean active) {
 		return getPersistence().countByActive(active);
-	}
-
-	/**
-	 * Returns all the offices where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @return the matching offices
-	 */
-	public static List<Office> findByAvailability(
-		Date availableFrom, Date availableUntil) {
-
-		return getPersistence().findByAvailability(
-			availableFrom, availableUntil);
-	}
-
-	/**
-	 * Returns a range of all the offices where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>OfficeModelImpl</code>.
-	 * </p>
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param start the lower bound of the range of offices
-	 * @param end the upper bound of the range of offices (not inclusive)
-	 * @return the range of matching offices
-	 */
-	public static List<Office> findByAvailability(
-		Date availableFrom, Date availableUntil, int start, int end) {
-
-		return getPersistence().findByAvailability(
-			availableFrom, availableUntil, start, end);
-	}
-
-	/**
-	 * Returns an ordered range of all the offices where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>OfficeModelImpl</code>.
-	 * </p>
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param start the lower bound of the range of offices
-	 * @param end the upper bound of the range of offices (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching offices
-	 */
-	public static List<Office> findByAvailability(
-		Date availableFrom, Date availableUntil, int start, int end,
-		OrderByComparator<Office> orderByComparator) {
-
-		return getPersistence().findByAvailability(
-			availableFrom, availableUntil, start, end, orderByComparator);
-	}
-
-	/**
-	 * Returns an ordered range of all the offices where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>OfficeModelImpl</code>.
-	 * </p>
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param start the lower bound of the range of offices
-	 * @param end the upper bound of the range of offices (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching offices
-	 */
-	public static List<Office> findByAvailability(
-		Date availableFrom, Date availableUntil, int start, int end,
-		OrderByComparator<Office> orderByComparator, boolean useFinderCache) {
-
-		return getPersistence().findByAvailability(
-			availableFrom, availableUntil, start, end, orderByComparator,
-			useFinderCache);
-	}
-
-	/**
-	 * Returns the first office in the ordered set where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching office
-	 * @throws NoSuchOfficeException if a matching office could not be found
-	 */
-	public static Office findByAvailability_First(
-			Date availableFrom, Date availableUntil,
-			OrderByComparator<Office> orderByComparator)
-		throws blood0cean.com.github.office.schedule.exception.
-			NoSuchOfficeException {
-
-		return getPersistence().findByAvailability_First(
-			availableFrom, availableUntil, orderByComparator);
-	}
-
-	/**
-	 * Returns the first office in the ordered set where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching office, or <code>null</code> if a matching office could not be found
-	 */
-	public static Office fetchByAvailability_First(
-		Date availableFrom, Date availableUntil,
-		OrderByComparator<Office> orderByComparator) {
-
-		return getPersistence().fetchByAvailability_First(
-			availableFrom, availableUntil, orderByComparator);
-	}
-
-	/**
-	 * Returns the last office in the ordered set where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching office
-	 * @throws NoSuchOfficeException if a matching office could not be found
-	 */
-	public static Office findByAvailability_Last(
-			Date availableFrom, Date availableUntil,
-			OrderByComparator<Office> orderByComparator)
-		throws blood0cean.com.github.office.schedule.exception.
-			NoSuchOfficeException {
-
-		return getPersistence().findByAvailability_Last(
-			availableFrom, availableUntil, orderByComparator);
-	}
-
-	/**
-	 * Returns the last office in the ordered set where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching office, or <code>null</code> if a matching office could not be found
-	 */
-	public static Office fetchByAvailability_Last(
-		Date availableFrom, Date availableUntil,
-		OrderByComparator<Office> orderByComparator) {
-
-		return getPersistence().fetchByAvailability_Last(
-			availableFrom, availableUntil, orderByComparator);
-	}
-
-	/**
-	 * Returns the offices before and after the current office in the ordered set where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param officeId the primary key of the current office
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next office
-	 * @throws NoSuchOfficeException if a office with the primary key could not be found
-	 */
-	public static Office[] findByAvailability_PrevAndNext(
-			long officeId, Date availableFrom, Date availableUntil,
-			OrderByComparator<Office> orderByComparator)
-		throws blood0cean.com.github.office.schedule.exception.
-			NoSuchOfficeException {
-
-		return getPersistence().findByAvailability_PrevAndNext(
-			officeId, availableFrom, availableUntil, orderByComparator);
-	}
-
-	/**
-	 * Removes all the offices where availableFrom = &#63; and availableUntil = &#63; from the database.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 */
-	public static void removeByAvailability(
-		Date availableFrom, Date availableUntil) {
-
-		getPersistence().removeByAvailability(availableFrom, availableUntil);
-	}
-
-	/**
-	 * Returns the number of offices where availableFrom = &#63; and availableUntil = &#63;.
-	 *
-	 * @param availableFrom the available from
-	 * @param availableUntil the available until
-	 * @return the number of matching offices
-	 */
-	public static int countByAvailability(
-		Date availableFrom, Date availableUntil) {
-
-		return getPersistence().countByAvailability(
-			availableFrom, availableUntil);
 	}
 
 	/**

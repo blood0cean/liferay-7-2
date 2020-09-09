@@ -443,34 +443,6 @@ public interface OfficeModel
 	 */
 	public void setMaxPeopleAllowed(int maxPeopleAllowed);
 
-	/**
-	 * Returns the available from of this office.
-	 *
-	 * @return the available from of this office
-	 */
-	public Date getAvailableFrom();
-
-	/**
-	 * Sets the available from of this office.
-	 *
-	 * @param availableFrom the available from of this office
-	 */
-	public void setAvailableFrom(Date availableFrom);
-
-	/**
-	 * Returns the available until of this office.
-	 *
-	 * @return the available until of this office
-	 */
-	public Date getAvailableUntil();
-
-	/**
-	 * Sets the available until of this office.
-	 *
-	 * @param availableUntil the available until of this office
-	 */
-	public void setAvailableUntil(Date availableUntil);
-
 	@Override
 	public String[] getAvailableLanguageIds();
 

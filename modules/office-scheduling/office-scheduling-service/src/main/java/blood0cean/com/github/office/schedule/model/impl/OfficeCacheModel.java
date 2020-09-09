@@ -61,7 +61,7 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -87,10 +87,6 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		sb.append(active);
 		sb.append(", maxPeopleAllowed=");
 		sb.append(maxPeopleAllowed);
-		sb.append(", availableFrom=");
-		sb.append(availableFrom);
-		sb.append(", availableUntil=");
-		sb.append(availableUntil);
 		sb.append("}");
 
 		return sb.toString();
@@ -150,20 +146,6 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		officeImpl.setActive(active);
 		officeImpl.setMaxPeopleAllowed(maxPeopleAllowed);
 
-		if (availableFrom == Long.MIN_VALUE) {
-			officeImpl.setAvailableFrom(null);
-		}
-		else {
-			officeImpl.setAvailableFrom(new Date(availableFrom));
-		}
-
-		if (availableUntil == Long.MIN_VALUE) {
-			officeImpl.setAvailableUntil(null);
-		}
-		else {
-			officeImpl.setAvailableUntil(new Date(availableUntil));
-		}
-
 		officeImpl.resetOriginalValues();
 
 		return officeImpl;
@@ -189,8 +171,6 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		active = objectInput.readBoolean();
 
 		maxPeopleAllowed = objectInput.readInt();
-		availableFrom = objectInput.readLong();
-		availableUntil = objectInput.readLong();
 	}
 
 	@Override
@@ -237,8 +217,6 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		objectOutput.writeBoolean(active);
 
 		objectOutput.writeInt(maxPeopleAllowed);
-		objectOutput.writeLong(availableFrom);
-		objectOutput.writeLong(availableUntil);
 	}
 
 	public String uuid;
@@ -253,7 +231,5 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 	public String description;
 	public boolean active;
 	public int maxPeopleAllowed;
-	public long availableFrom;
-	public long availableUntil;
 
 }

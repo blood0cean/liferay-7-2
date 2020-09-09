@@ -54,8 +54,6 @@ public class OfficeWrapper
 		attributes.put("description", getDescription());
 		attributes.put("active", isActive());
 		attributes.put("maxPeopleAllowed", getMaxPeopleAllowed());
-		attributes.put("availableFrom", getAvailableFrom());
-		attributes.put("availableUntil", getAvailableUntil());
 
 		return attributes;
 	}
@@ -133,18 +131,6 @@ public class OfficeWrapper
 		if (maxPeopleAllowed != null) {
 			setMaxPeopleAllowed(maxPeopleAllowed);
 		}
-
-		Date availableFrom = (Date)attributes.get("availableFrom");
-
-		if (availableFrom != null) {
-			setAvailableFrom(availableFrom);
-		}
-
-		Date availableUntil = (Date)attributes.get("availableUntil");
-
-		if (availableUntil != null) {
-			setAvailableUntil(availableUntil);
-		}
 	}
 
 	/**
@@ -157,29 +143,9 @@ public class OfficeWrapper
 		return model.getActive();
 	}
 
-	/**
-	 * Returns the available from of this office.
-	 *
-	 * @return the available from of this office
-	 */
-	@Override
-	public Date getAvailableFrom() {
-		return model.getAvailableFrom();
-	}
-
 	@Override
 	public String[] getAvailableLanguageIds() {
 		return model.getAvailableLanguageIds();
-	}
-
-	/**
-	 * Returns the available until of this office.
-	 *
-	 * @return the available until of this office
-	 */
-	@Override
-	public Date getAvailableUntil() {
-		return model.getAvailableUntil();
 	}
 
 	/**
@@ -487,26 +453,6 @@ public class OfficeWrapper
 	@Override
 	public void setActive(boolean active) {
 		model.setActive(active);
-	}
-
-	/**
-	 * Sets the available from of this office.
-	 *
-	 * @param availableFrom the available from of this office
-	 */
-	@Override
-	public void setAvailableFrom(Date availableFrom) {
-		model.setAvailableFrom(availableFrom);
-	}
-
-	/**
-	 * Sets the available until of this office.
-	 *
-	 * @param availableUntil the available until of this office
-	 */
-	@Override
-	public void setAvailableUntil(Date availableUntil) {
-		model.setAvailableUntil(availableUntil);
 	}
 
 	/**

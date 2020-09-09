@@ -14,6 +14,7 @@
 
 package blood0cean.com.github.office.schedule.service;
 
+import blood0cean.com.github.office.schedule.exception.NoSuchOfficeException;
 import blood0cean.com.github.office.schedule.model.Office;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -29,6 +30,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -63,6 +65,10 @@ public interface OfficeLocalService
 	 *
 	 * Never modify or reference this interface directly. Always use {@link OfficeLocalServiceUtil} to access the office local service. Add custom service methods to <code>blood0cean.com.github.office.schedule.service.impl.OfficeLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Office addOffice(
+			long userId, String name, String description, boolean active,
+			int maxPeopleAllowed, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Adds the office to the database. Also notifies the appropriate model listeners.
@@ -87,10 +93,12 @@ public interface OfficeLocalService
 	 *
 	 * @param officeId the primary key of the office
 	 * @return the office that was removed
+	 * @throws NoSuchOfficeException
 	 * @throws PortalException if a office with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Office deleteOffice(long officeId) throws PortalException;
+	public Office deleteOffice(long officeId)
+		throws NoSuchOfficeException, PortalException;
 
 	/**
 	 * Deletes the office from the database. Also notifies the appropriate model listeners.
@@ -233,6 +241,16 @@ public interface OfficeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Office> getOffices(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Office> getOffices(long groupId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Office> getOffices(long groupId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Office> getOffices(
+		long groupId, int start, int end, OrderByComparator<Office> obc);
+
 	/**
 	 * Returns all the offices matching the UUID and company.
 	 *
@@ -267,6 +285,9 @@ public interface OfficeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOfficesCount();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getOfficesCount(long groupId);
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -280,6 +301,11 @@ public interface OfficeLocalService
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	public Office updateOffice(
+			long userId, long officeId, String name, String description,
+			boolean active, int maxPeopleAllowed, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
