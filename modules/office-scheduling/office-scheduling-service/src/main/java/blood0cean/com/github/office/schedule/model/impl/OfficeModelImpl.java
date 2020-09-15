@@ -87,7 +87,8 @@ public class OfficeModelImpl
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
-		{"active_", Types.BOOLEAN}, {"maxPeopleAllowed", Types.INTEGER}
+		{"active_", Types.BOOLEAN}, {"maxPeopleAllowed", Types.INTEGER},
+		{"weekOpenDays", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -106,10 +107,11 @@ public class OfficeModelImpl
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("maxPeopleAllowed", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("weekOpenDays", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table OFFICE_Office (uuid_ VARCHAR(75) null,officeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,description STRING null,active_ BOOLEAN,maxPeopleAllowed INTEGER)";
+		"create table OFFICE_Office (uuid_ VARCHAR(75) null,officeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,description STRING null,active_ BOOLEAN,maxPeopleAllowed INTEGER,weekOpenDays VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table OFFICE_Office";
 
@@ -167,6 +169,7 @@ public class OfficeModelImpl
 		model.setDescription(soapModel.getDescription());
 		model.setActive(soapModel.isActive());
 		model.setMaxPeopleAllowed(soapModel.getMaxPeopleAllowed());
+		model.setWeekOpenDays(soapModel.getWeekOpenDays());
 
 		return model;
 	}
@@ -351,6 +354,10 @@ public class OfficeModelImpl
 		attributeSetterBiConsumers.put(
 			"maxPeopleAllowed",
 			(BiConsumer<Office, Integer>)Office::setMaxPeopleAllowed);
+		attributeGetterFunctions.put("weekOpenDays", Office::getWeekOpenDays);
+		attributeSetterBiConsumers.put(
+			"weekOpenDays",
+			(BiConsumer<Office, String>)Office::setWeekOpenDays);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -773,6 +780,22 @@ public class OfficeModelImpl
 		_maxPeopleAllowed = maxPeopleAllowed;
 	}
 
+	@JSON
+	@Override
+	public String getWeekOpenDays() {
+		if (_weekOpenDays == null) {
+			return "";
+		}
+		else {
+			return _weekOpenDays;
+		}
+	}
+
+	@Override
+	public void setWeekOpenDays(String weekOpenDays) {
+		_weekOpenDays = weekOpenDays;
+	}
+
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(
@@ -915,6 +938,7 @@ public class OfficeModelImpl
 		officeImpl.setDescription(getDescription());
 		officeImpl.setActive(isActive());
 		officeImpl.setMaxPeopleAllowed(getMaxPeopleAllowed());
+		officeImpl.setWeekOpenDays(getWeekOpenDays());
 
 		officeImpl.resetOriginalValues();
 
@@ -1062,6 +1086,14 @@ public class OfficeModelImpl
 
 		officeCacheModel.maxPeopleAllowed = getMaxPeopleAllowed();
 
+		officeCacheModel.weekOpenDays = getWeekOpenDays();
+
+		String weekOpenDays = officeCacheModel.weekOpenDays;
+
+		if ((weekOpenDays != null) && (weekOpenDays.length() == 0)) {
+			officeCacheModel.weekOpenDays = null;
+		}
+
 		return officeCacheModel;
 	}
 
@@ -1159,6 +1191,7 @@ public class OfficeModelImpl
 	private boolean _originalActive;
 	private boolean _setOriginalActive;
 	private int _maxPeopleAllowed;
+	private String _weekOpenDays;
 	private long _columnBitmask;
 	private Office _escapedModel;
 

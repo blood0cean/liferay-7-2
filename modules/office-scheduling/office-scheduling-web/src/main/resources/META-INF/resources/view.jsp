@@ -16,6 +16,7 @@
 		<liferay-ui:search-container-column-text property="description" />
 		<liferay-ui:search-container-column-text property="active" />
 		<liferay-ui:search-container-column-text property="maxPeopleAllowed" />
+		<liferay-ui:search-container-column-text property="weekOpenDays" />
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>

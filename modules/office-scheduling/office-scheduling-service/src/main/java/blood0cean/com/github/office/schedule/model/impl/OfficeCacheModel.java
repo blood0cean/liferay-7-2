@@ -61,7 +61,7 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -87,6 +87,8 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		sb.append(active);
 		sb.append(", maxPeopleAllowed=");
 		sb.append(maxPeopleAllowed);
+		sb.append(", weekOpenDays=");
+		sb.append(weekOpenDays);
 		sb.append("}");
 
 		return sb.toString();
@@ -146,6 +148,13 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		officeImpl.setActive(active);
 		officeImpl.setMaxPeopleAllowed(maxPeopleAllowed);
 
+		if (weekOpenDays == null) {
+			officeImpl.setWeekOpenDays("");
+		}
+		else {
+			officeImpl.setWeekOpenDays(weekOpenDays);
+		}
+
 		officeImpl.resetOriginalValues();
 
 		return officeImpl;
@@ -171,6 +180,7 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		active = objectInput.readBoolean();
 
 		maxPeopleAllowed = objectInput.readInt();
+		weekOpenDays = objectInput.readUTF();
 	}
 
 	@Override
@@ -217,6 +227,13 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 		objectOutput.writeBoolean(active);
 
 		objectOutput.writeInt(maxPeopleAllowed);
+
+		if (weekOpenDays == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(weekOpenDays);
+		}
 	}
 
 	public String uuid;
@@ -231,5 +248,6 @@ public class OfficeCacheModel implements CacheModel<Office>, Externalizable {
 	public String description;
 	public boolean active;
 	public int maxPeopleAllowed;
+	public String weekOpenDays;
 
 }

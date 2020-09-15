@@ -33,12 +33,12 @@ public class OfficeLocalServiceWrapper
 	@Override
 	public blood0cean.com.github.office.schedule.model.Office addOffice(
 			long userId, String name, String description, boolean active,
-			int maxPeopleAllowed,
+			int maxPeopleAllowed, String[] weekOpenDays,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _officeLocalService.addOffice(
-			userId, name, description, active, maxPeopleAllowed,
+			userId, name, description, active, maxPeopleAllowed, weekOpenDays,
 			serviceContext);
 	}
 
@@ -393,13 +393,13 @@ public class OfficeLocalServiceWrapper
 	@Override
 	public blood0cean.com.github.office.schedule.model.Office updateOffice(
 			long userId, long officeId, String name, String description,
-			boolean active, int maxPeopleAllowed,
+			boolean active, int maxPeopleAllowed, String[] weekOpenDays,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _officeLocalService.updateOffice(
 			userId, officeId, name, description, active, maxPeopleAllowed,
-			serviceContext);
+			weekOpenDays, serviceContext);
 	}
 
 	/**

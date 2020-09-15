@@ -19,6 +19,7 @@
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="active_" name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="maxPeopleAllowed" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="weekOpenDays" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="blood0cean.com.github.office.schedule.model.impl.OfficeScheduleImpl" table="OFFICE_OfficeSchedule">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="officeScheduleId" type="long">

@@ -43,6 +43,7 @@ public class OfficeSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setActive(model.isActive());
 		soapModel.setMaxPeopleAllowed(model.getMaxPeopleAllowed());
+		soapModel.setWeekOpenDays(model.getWeekOpenDays());
 
 		return soapModel;
 	}
@@ -195,6 +196,14 @@ public class OfficeSoap implements Serializable {
 		_maxPeopleAllowed = maxPeopleAllowed;
 	}
 
+	public String getWeekOpenDays() {
+		return _weekOpenDays;
+	}
+
+	public void setWeekOpenDays(String weekOpenDays) {
+		_weekOpenDays = weekOpenDays;
+	}
+
 	private String _uuid;
 	private long _officeId;
 	private long _groupId;
@@ -207,5 +216,6 @@ public class OfficeSoap implements Serializable {
 	private String _description;
 	private boolean _active;
 	private int _maxPeopleAllowed;
+	private String _weekOpenDays;
 
 }

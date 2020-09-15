@@ -443,6 +443,21 @@ public interface OfficeModel
 	 */
 	public void setMaxPeopleAllowed(int maxPeopleAllowed);
 
+	/**
+	 * Returns the week open days of this office.
+	 *
+	 * @return the week open days of this office
+	 */
+	@AutoEscape
+	public String getWeekOpenDays();
+
+	/**
+	 * Sets the week open days of this office.
+	 *
+	 * @param weekOpenDays the week open days of this office
+	 */
+	public void setWeekOpenDays(String weekOpenDays);
+
 	@Override
 	public String[] getAvailableLanguageIds();
 

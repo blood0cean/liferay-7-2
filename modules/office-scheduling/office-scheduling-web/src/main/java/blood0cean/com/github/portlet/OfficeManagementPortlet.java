@@ -1,12 +1,8 @@
 package blood0cean.com.github.portlet;
 
-import java.util.List;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -49,11 +45,12 @@ public class OfficeManagementPortlet extends MVCPortlet {
 		String description = ParamUtil.getString(request, "description");
 		boolean active = ParamUtil.getBoolean(request, "active");
 		int maxPeopleAllowed = ParamUtil.getInteger(request, "maxPeopleAllowed");
+		String[] weekOpenDays = ParamUtil.getStringValues(request, "weekOpenDays");
 		
 		if (officeId == 0) {
-			_officeLocalService.addOffice(serviceContext.getUserId(), name, description, active, maxPeopleAllowed, serviceContext);
+			_officeLocalService.addOffice(serviceContext.getUserId(), name, description, active, maxPeopleAllowed, weekOpenDays, serviceContext);
 		} else {
-			_officeLocalService.updateOffice(serviceContext.getUserId(), officeId, name, description, active, maxPeopleAllowed, serviceContext);			
+			_officeLocalService.updateOffice(serviceContext.getUserId(), officeId, name, description, active, maxPeopleAllowed, weekOpenDays, serviceContext);			
 		}
 	}
 	

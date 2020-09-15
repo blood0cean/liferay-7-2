@@ -28,6 +28,7 @@
 		<column name="description" type="String" localized="true"/>
 		<column name="active" type="boolean" />
 		<column name="maxPeopleAllowed" type="int" />
+		<column name="weekOpenDays" type="String" />
 
 		<!-- Order -->
 
@@ -36,8 +37,6 @@
 		</order>
 
 		<!-- Finder methods -->
-
-
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>

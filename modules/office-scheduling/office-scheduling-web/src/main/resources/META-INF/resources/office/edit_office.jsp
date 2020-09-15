@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="blood0cean.com.github.office.schedule.service.OfficeLocalServiceUtil"%>
 <%@page import="blood0cean.com.github.office.schedule.model.Office"%>
@@ -29,9 +30,19 @@ if (officeId > 0) {
 		<aui:input name="name" localized="true"/>
 		<aui:input name="description" localized="true"/>
 		<aui:input name="active" type="checkbox" />
-		<aui:input name="maxPeopleAllowed" type="number" />
+		<aui:input name="maxPeopleAllowed" type="number" label="max-people-allowed" />
+		
+		<liferay-ui:message key="week-open-days"></liferay-ui:message>
+		<aui:input id="openDay_monday" name="weekOpenDays" type="checkbox" value="<%= Calendar.MONDAY %>" label="monday" />
+		<aui:input id="openDay_tuesday" name="weekOpenDays" type="checkbox" value="<%= Calendar.TUESDAY %>" label="tuesday" />
+		<aui:input id="openDay_wednesday" name="weekOpenDays" type="checkbox" value="<%= Calendar.WEDNESDAY %>" label="wednesday" />
+		<aui:input id="openDay_thursday" name="weekOpenDays" type="checkbox" value="<%= Calendar.THURSDAY %>" label="thursday" />
+		<aui:input id="openDay_friday" name="weekOpenDays" type="checkbox" value="<%= Calendar.FRIDAY %>" label="friday" />
+		<aui:input id="openDay_saturday" name="weekOpenDays" type="checkbox" value="<%= Calendar.SATURDAY %>" label="saturday" />
+		<aui:input id="openDay_sunday" name="weekOpenDays" type="checkbox" value="<%= Calendar.SUNDAY %>" label="sunday" />
+		
 		<aui:input name="officeId" type="hidden" />
-
+		
 	</aui:fieldset>
 
 	<aui:button-row>

@@ -54,6 +54,7 @@ public class OfficeWrapper
 		attributes.put("description", getDescription());
 		attributes.put("active", isActive());
 		attributes.put("maxPeopleAllowed", getMaxPeopleAllowed());
+		attributes.put("weekOpenDays", getWeekOpenDays());
 
 		return attributes;
 	}
@@ -130,6 +131,12 @@ public class OfficeWrapper
 
 		if (maxPeopleAllowed != null) {
 			setMaxPeopleAllowed(maxPeopleAllowed);
+		}
+
+		String weekOpenDays = (String)attributes.get("weekOpenDays");
+
+		if (weekOpenDays != null) {
+			setWeekOpenDays(weekOpenDays);
 		}
 	}
 
@@ -416,6 +423,16 @@ public class OfficeWrapper
 	}
 
 	/**
+	 * Returns the week open days of this office.
+	 *
+	 * @return the week open days of this office
+	 */
+	@Override
+	public String getWeekOpenDays() {
+		return model.getWeekOpenDays();
+	}
+
+	/**
 	 * Returns <code>true</code> if this office is active.
 	 *
 	 * @return <code>true</code> if this office is active; <code>false</code> otherwise
@@ -693,6 +710,16 @@ public class OfficeWrapper
 	@Override
 	public void setUuid(String uuid) {
 		model.setUuid(uuid);
+	}
+
+	/**
+	 * Sets the week open days of this office.
+	 *
+	 * @param weekOpenDays the week open days of this office
+	 */
+	@Override
+	public void setWeekOpenDays(String weekOpenDays) {
+		model.setWeekOpenDays(weekOpenDays);
 	}
 
 	@Override

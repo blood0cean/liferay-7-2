@@ -10,7 +10,8 @@ create table OFFICE_Office (
 	name STRING null,
 	description STRING null,
 	active_ BOOLEAN,
-	maxPeopleAllowed INTEGER
+	maxPeopleAllowed INTEGER,
+	weekOpenDays VARCHAR(75) null
 );
 
 create table OFFICE_OfficeSchedule (

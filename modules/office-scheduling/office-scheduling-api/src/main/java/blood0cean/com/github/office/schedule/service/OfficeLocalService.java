@@ -67,7 +67,8 @@ public interface OfficeLocalService
 	 */
 	public Office addOffice(
 			long userId, String name, String description, boolean active,
-			int maxPeopleAllowed, ServiceContext serviceContext)
+			int maxPeopleAllowed, String[] weekOpenDays,
+			ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -305,7 +306,8 @@ public interface OfficeLocalService
 
 	public Office updateOffice(
 			long userId, long officeId, String name, String description,
-			boolean active, int maxPeopleAllowed, ServiceContext serviceContext)
+			boolean active, int maxPeopleAllowed, String[] weekOpenDays,
+			ServiceContext serviceContext)
 		throws PortalException;
 
 	/**

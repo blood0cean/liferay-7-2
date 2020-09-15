@@ -19,6 +19,7 @@ import blood0cean.com.github.office.schedule.exception.OfficeNameRequiredExcepti
 import blood0cean.com.github.office.schedule.model.Office;
 import blood0cean.com.github.office.schedule.service.base.OfficeLocalServiceBaseImpl;
 
+import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
@@ -26,6 +27,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +57,8 @@ public class OfficeLocalServiceImpl extends OfficeLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>blood0cean.com.github.office.schedule.service.OfficeLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>blood0cean.com.github.office.schedule.service.OfficeLocalServiceUtil</code>.
 	 */
-	public Office addOffice(long userId, String name, String description, boolean active, int maxPeopleAllowed, ServiceContext serviceContext) throws PortalException {
+	public Office addOffice(long userId, String name, String description, boolean active, int maxPeopleAllowed, String[] weekOpenDays,
+			ServiceContext serviceContext) throws PortalException {
 		long groupId = serviceContext.getScopeGroupId();
 		User user = userLocalService.getUserById(userId);
 		
@@ -77,13 +80,17 @@ public class OfficeLocalServiceImpl extends OfficeLocalServiceBaseImpl {
 		office.setDescription(description);
 		office.setActive(active);
 		office.setMaxPeopleAllowed(maxPeopleAllowed);
+		if (weekOpenDays != null) {
+			office.setWeekOpenDays(StringUtil.merge(weekOpenDays, ","));
+		}
 		
 		office.setExpandoBridgeAttributes(serviceContext);
 		
 		return officePersistence.update(office);
 	}
 	
-	public Office updateOffice(long userId, long officeId, String name, String description, boolean active, int maxPeopleAllowed, ServiceContext serviceContext) throws PortalException {
+	public Office updateOffice(long userId, long officeId, String name, String description, boolean active, int maxPeopleAllowed, String[] weekOpenDays, 
+			ServiceContext serviceContext) throws PortalException {
 		User user = userLocalService.getUserById(userId);
 		
 		validate(name);
@@ -98,6 +105,11 @@ public class OfficeLocalServiceImpl extends OfficeLocalServiceBaseImpl {
 		office.setDescription(description);
 		office.setActive(active);
 		office.setMaxPeopleAllowed(maxPeopleAllowed);
+		if (weekOpenDays != null) {
+			office.setWeekOpenDays(StringUtil.merge(weekOpenDays, ","));
+		} else {
+			office.setWeekOpenDays(null);
+		}
 		
 		office.setExpandoBridgeAttributes(serviceContext);
 		

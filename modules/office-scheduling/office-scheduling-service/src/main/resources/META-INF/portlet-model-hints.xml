@@ -14,6 +14,7 @@
 		<field localized="true" name="description" type="String" />
 		<field name="active" type="boolean" />
 		<field name="maxPeopleAllowed" type="int" />
+		<field name="weekOpenDays" type="String" />
 	</model>
 	<model name="blood0cean.com.github.office.schedule.model.OfficeSchedule">
 		<field name="uuid" type="String" />
